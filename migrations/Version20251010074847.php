@@ -19,10 +19,6 @@ final class Version20251010074847 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, name VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
-
-        )');
         $this->addSql(<<<SQL
             CREATE TABLE users (
                     id INT AUTO_INCREMENT NOT NULL,
