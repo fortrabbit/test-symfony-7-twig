@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; font-family: Arial, sans-serif;">
+    <h1 style="text-align: center; margin-bottom: 30px;">Please sign in</h1>
+
+    {% if error %}
+        <div style="background-color: #f8d7da; color: #721c24; padding: 12px; border-radius: 4px; margin-bottom: 20px;">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+    <form method="post" action="{{ path('app_login') }}">
+        <div style="margin-bottom: 15px;">
+            <label for="username" style="display: block; margin-bottom: 5px;">Email:</label>
+            <input
+                type="email"
+                value="{{ last_username }}"
+                name="_username"
+                id="username"
+                required
+                autofocus
+                style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;"
+            >
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+            <input
+                type="password"
+                name="_password"
+                id="password"
+                required
+                style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;"
+            >
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button
+            type="submit"
+            style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;"
+        >
+            Sign in
+        </button>
+    </form>
+
+    <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <p style="margin: 0; font-size: 14px;"><strong>Test credentials:</strong></p>
+        <p style="margin: 5px 0 0 0; font-size: 14px;">Email: test@fortrabbit.com</p>
+    </div>
+</div>
+{% endblock %}
