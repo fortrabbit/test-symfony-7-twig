@@ -23,6 +23,15 @@ final class Version20251010074847 extends AbstractMigration
         $this->addSql('CREATE TABLE "user" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, name VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
         )');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E7927C74 ON "user" (email)');
+
+        // Insert test user with bcrypt hashed password "password"
+        // Password hash: $2y$13$8K1p/8Hn4P4GEW4q4K1m4O8JtD0p3LnJKTX8EqPqYJxHwVx8jtqIu
+        $this->addSql('INSERT INTO "user" (email, name, password, roles) VALUES (?, ?, ?, ?)', [
+            'test@fortrabbit.com',
+            'Test User',
+            '$2y$13$8K1p/8Hn4P4GEW4q4K1m4O8JtD0p3LnJKTX8EqPqYJxHwVx8jtqIu',
+            '[]'
+        ]);
     }
 
     public function down(Schema $schema): void
