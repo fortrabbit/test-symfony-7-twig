@@ -20,11 +20,11 @@ final class Version20251010074847 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE "user" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, name VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
+        $this->addSql('CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, name VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
         )');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E7927C74 ON "user" (email)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E7927C74 ON users (email)');
 
-        $this->addSql('INSERT INTO "user" (email, name, password, roles) VALUES (?, ?, ?, ?)', [
+        $this->addSql('INSERT INTO users (email, name, password, roles) VALUES (?, ?, ?, ?)', [
             'test@fortrabbit.com',
             'Test User',
             password_hash('password', \PASSWORD_BCRYPT),
@@ -35,6 +35,6 @@ final class Version20251010074847 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE "user"');
+        $this->addSql('DROP TABLE users');
     }
 }
